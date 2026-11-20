@@ -1,0 +1,9 @@
+[versions]
+junit = "4.13.2"
+jserialcomm = "2.11.0"
+opentest4j = "1.3.0"
+
+[libraries]
+junit = { module = "junit:junit", version.ref = "junit" }
+jserialcomm = { module = "com.fazecast:jSerialComm", version.ref = "jserialcomm" }
+opentest4j = { module = "org.opentest4j:opentest4j", version.ref = "opentest4j" }

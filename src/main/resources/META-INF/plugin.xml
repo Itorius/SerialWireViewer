@@ -1,0 +1,35 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>com.itorius.SerialWireViewer</id>
+    <name>Serial Wire Viewer</name>
+    <vendor>itorius</vendor>
+
+    <description><![CDATA[
+        Shows Serial Wire Output (SWO) from ARM Cortex-M microcontrollers in a dedicated tool window.
+        <ul>
+            <li>Reads SWO from a serial port (USB-UART wired to the SWO pin) or from a TCP server such as OpenOCD</li>
+            <li>Decodes ITM packets and shows the selected stimulus ports, each in its own tab and/or combined</li>
+            <li>Configurable connection speed, ports to display and optional timestamps</li>
+        </ul>
+        Configure it under <b>Settings | Tools | Serial Wire Viewer</b>.
+        ]]></description>
+
+    <!-- Platform-only dependency: works in CLion and every other IntelliJ-based IDE. -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <resource-bundle>messages.SwoBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
+
+        <toolWindow id="SWO Viewer" anchor="bottom" canCloseContents="false"
+                    factoryClass="com.itorius.swo.ui.SwoToolWindowFactory"
+                    icon="AllIcons.Nodes.Console"/>
+
+        <projectConfigurable parentId="tools"
+                             instance="com.itorius.swo.settings.SwoConfigurable"
+                             id="com.itorius.swo.settings"
+                             displayName="Serial Wire Viewer"
+                             nonDefaultProject="true"/>
+    </extensions>
+</idea-plugin>
